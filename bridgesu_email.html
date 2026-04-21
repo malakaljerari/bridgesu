@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge@SU — Issue No. 01</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #e8ecf0; font-family: 'DM Sans', sans-serif; padding: 32px 16px; }
+  .email-wrapper { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+  .email-header { background: #0a2150; padding: 36px 40px 32px; position: relative; overflow: hidden; }
+  .logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .logo-mark { width: 34px; height: 34px; background: #d44500; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Source Serif 4', serif; font-size: 17px; color: #fff; font-weight: 600; }
+  .logo-text { font-family: 'Source Serif 4', serif; font-size: 19px; color: #fff; }
+  .logo-text span { color: #d44500; }
+  .issue-tag { display: inline-block; background: rgba(212,69,0,0.2); color: #f4956a; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; margin-bottom: 14px; }
+  .email-headline { font-family: 'Source Serif 4', serif; font-size: 28px; color: #fff; line-height: 1.25; }
+  .email-headline em { color: #f4956a; font-style: italic; }
+  .email-body { padding: 36px 40px; }
+  .greeting { font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 30px; border-left: 3px solid #0a2150; padding-left: 16px; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0a2150; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: #e4e8ee; }
+  .section { margin-bottom: 32px; }
+  .deadline-card { background: #f7f9fc; border-radius: 4px; padding: 14px 16px; margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start; border-left: 3px solid #dde3ec; }
+  .deadline-card.urgent { border-left-color: #d44500; }
+  .deadline-card.soon { border-left-color: #0a2150; }
+  .deadline-date { min-width: 46px; text-align: center; }
+  .deadline-date .month { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; }
+  .deadline-date .day { font-size: 24px; font-weight: 300; color: #0a2150; line-height: 1; }
+  .deadline-info .title { font-size: 14px; font-weight: 500; color: #0a2150; margin-bottom: 3px; }
+  .deadline-info .desc { font-size: 12px; color: #777; line-height: 1.5; }
+  .urgent-badge { display: inline-block; background: #fdecea; color: #d44500; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .spotlight-card { background: #0a2150; border-radius: 4px; padding: 26px; color: #fff; position: relative; overflow: hidden; }
+  .spotlight-card::before { content: '\201C'; position: absolute; top: 4px; left: 18px; font-family: 'Source Serif 4', serif; font-size: 80px; color: rgba(244,149,106,0.15); line-height: 1; }
+  .spotlight-quote { font-family: 'Source Serif 4', serif; font-size: 16px; line-height: 1.6; color: #e8ecf4; margin-bottom: 18px; position: relative; z-index: 1; }
+  .spotlight-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: #d44500; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: #fff; }
+  .author-name { font-size: 13px; font-weight: 500; color: #fff; }
+  .author-major { font-size: 11px; color: #f4956a; }
+  .tip-list { list-style: none; }
+  .tip-list li { padding: 12px 0; border-bottom: 1px solid #f0f3f7; font-size: 14px; color: #444; line-height: 1.6; display: flex; gap: 10px; align-items: flex-start; }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-num { min-width: 22px; height: 22px; background: #0a2150; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; margin-top: 1px; }
+  .event-card { border: 1px solid #dde3ec; border-radius: 4px; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #f7f9fc; }
+  .event-title { font-size: 14px; font-weight: 500; color: #0a2150; margin-bottom: 3px; }
+  .event-meta { font-size: 12px; color: #888; }
+  .event-btn { background: #d44500; color: #fff; border: none; border-radius: 3px; padding: 9px 18px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+  .email-footer { background: #0a2150; padding: 26px 40px; text-align: center; }
+  .footer-logo { font-family: 'Source Serif 4', serif; font-size: 15px; color: #fff; margin-bottom: 6px; }
+  .footer-logo span { color: #d44500; }
+  .footer-text { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .footer-links { margin-top: 10px; font-size: 11px; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; margin: 0 8px; }
+</style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-header">
+      <div class="logo-row">
+        <div class="logo-mark">B</div>
+        <div class="logo-text">Bridge<span>@SU</span></div>
+      </div>
+      <div class="issue-tag">Issue No. 01 · April 2026</div>
+      <div class="email-headline">Your path to college<br><em>starts now.</em></div>
+    </div>
+    <div class="email-body">
+      <div class="greeting">Hey! Welcome to Bridge@SU, a free biweekly newsletter written by Syracuse University students — for high schoolers like you. Every issue we share real deadlines, tips we wish we had, and stories from students who figured it out as they went.</div>
+      <div class="section">
+        <div class="section-label">Deadlines to know</div>
+        <div class="deadline-card urgent">
+          <div class="deadline-date"><div class="month">Check</div><div class="day" style="font-size:16px;margin-top:4px">Site</div></div>
+          <div class="deadline-info">
+            <div class="title">QuestBridge College Prep Scholars <span class="urgent-badge">Verify dates</span></div>
+            <div class="desc">Free program for high-achieving students from low-income backgrounds. Check questbridge.org for exact current deadlines.</div>
+          </div>
+        </div>
+        <div class="deadline-card soon">
+          <div class="deadline-date"><div class="month">Oct</div><div class="day">1</div></div>
+          <div class="deadline-info">
+            <div class="title">FAFSA Opens for Seniors</div>
+            <div class="desc">Free Application for Federal Student Aid. Required for almost every college financial aid package. Free to fill out — start early.</div>
+          </div>
+        </div>
+        <div class="deadline-card">
+          <div class="deadline-date"><div class="month">Visit</div><div class="day" style="font-size:16px;margin-top:4px">Site</div></div>
+          <div class="deadline-info">
+            <div class="title">SU Pre-College Programs</div>
+            <div class="desc">Live on campus, take a real college course, earn credits. Financial aid available. Check precollege.syr.edu for current deadlines.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-label">Student spotlight</div>
+        <div class="spotlight-card">
+          <div class="spotlight-quote">"I had no idea what FAFSA was until junior year. Nobody in my family had gone through the college application process, so I was figuring everything out alone. I started Bridge@SU because no high schooler should have to feel that lost navigating something this important."</div>
+          <div class="spotlight-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">Malak A. — Founder</div>
+              <div class="author-major">Junior, Chemical Engineering, Syracuse University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-label">3 things to do this month</div>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div><span>Make a free Common App account this summer, even if you're only a sophomore. Get familiar with what it asks before you actually need it.</span></li>
+          <li><div class="tip-num">2</div><span>Email one teacher or counselor this week and ask: "What's one scholarship or program you'd recommend for a student like me?" Most people love being asked.</span></li>
+          <li><div class="tip-num">3</div><span>FAFSA opens October 1st for seniors every year. It's free and required for almost all financial aid. Put it on your calendar now, before senior year gets busy.</span></li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-label">Upcoming event</div>
+        <div class="event-card">
+          <div>
+            <div class="event-title">Bridge@SU Info Session — Syracuse University Campus</div>
+            <div class="event-meta">Coming soon · Free, open to all 9th–12th graders</div>
+          </div>
+          <button class="event-btn">RSVP</button>
+        </div>
+      </div>
+    </div>
+    <div class="email-footer">
+      <div class="footer-logo">Bridge<span>@SU</span></div>
+      <div class="footer-text">A student-led initiative at Syracuse University<br>connecting high schoolers to the opportunities they deserve.</div>
+      <div class="footer-links">
+        <a href="#">Website</a>
+        <a href="#">Instagram</a>
+        <a href="#">Unsubscribe</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
