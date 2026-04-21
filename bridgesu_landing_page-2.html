@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge@SU</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0a2150;
+    --orange: #d44500;
+    --orange-light: #f4956a;
+    --cream: #f7f9fc;
+    --text: #1a1a2e;
+    --muted: #5a6480;
+    --border: #dde3ec;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nav-logo { font-family: 'Source Serif 4', serif; font-size: 20px; color: #fff; }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--orange); color: #fff; border: none; padding: 9px 20px; border-radius: 3px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .hero { background: var(--navy); padding: 80px 48px 72px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(212,69,0,0.4); color: var(--orange-light); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 22px; }
+  .hero h1 { font-family: 'Source Serif 4', serif; font-size: 48px; color: #fff; line-height: 1.15; margin-bottom: 20px; font-weight: 400; }
+  .hero h1 em { color: var(--orange-light); font-style: italic; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 36px; max-width: 460px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--orange); color: #fff; border: none; padding: 13px 28px; border-radius: 3px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.2); padding: 13px 28px; border-radius: 3px; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .hero-stats { display: flex; flex-direction: column; gap: 14px; }
+  .stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; }
+  .stat-num { font-family: 'Source Serif 4', serif; font-size: 30px; color: var(--orange-light); min-width: 72px; font-weight: 300; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.55; }
+  .section { padding: 72px 48px; }
+  .section.alt { background: var(--cream); }
+  .section-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .section h2 { font-family: 'Source Serif 4', serif; font-size: 36px; color: var(--navy); line-height: 1.2; margin-bottom: 48px; font-weight: 400; max-width: 480px; }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .how-card { background: #fff; border-radius: 6px; padding: 28px 26px; border: 1px solid var(--border); border-top: 3px solid var(--navy); }
+  .how-num { font-family: 'Source Serif 4', serif; font-size: 36px; color: #dde3ec; line-height: 1; margin-bottom: 16px; }
+  .how-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .how-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .subscribe-section { background: var(--navy); padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .subscribe-section h2 { font-family: 'Source Serif 4', serif; font-size: 34px; color: #fff; line-height: 1.2; margin-bottom: 16px; font-weight: 400; }
+  .subscribe-section h2 em { color: var(--orange-light); font-style: italic; }
+  .subscribe-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+  .subscribe-form { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 30px; }
+  .form-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 7px; display: block; }
+  .form-input { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 10px 14px; color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif; margin-bottom: 14px; outline: none; }
+  .form-input::placeholder { color: rgba(255,255,255,0.25); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-submit { width: 100%; background: var(--orange); color: #fff; border: none; padding: 13px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 4px; }
+  .form-note { font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; margin-top: 10px; }
+  .about-section { padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about-section h2 { font-family: 'Source Serif 4', serif; font-size: 34px; color: var(--navy); line-height: 1.25; margin-bottom: 18px; font-weight: 400; }
+  .about-section p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+  .value-list { list-style: none; margin-top: 20px; }
+  .value-list li { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; font-size: 14px; color: var(--text); line-height: 1.6; }
+  .value-dot { min-width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-top: 6px; }
+  .founder-card { background: var(--navy); border-radius: 8px; padding: 36px; position: relative; overflow: hidden; }
+  .founder-card::before { content: '\201C'; font-family: 'Source Serif 4', serif; font-size: 80px; color: rgba(212,69,0,0.2); position: absolute; top: 10px; left: 22px; line-height: 1; }
+  .founder-quote { font-family: 'Source Serif 4', serif; font-size: 18px; color: #e8ecf4; line-height: 1.6; font-style: italic; position: relative; z-index: 1; margin-bottom: 22px; }
+  .founder-info { display: flex; align-items: center; gap: 12px; }
+  .founder-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; color: #fff; }
+  .founder-name { font-size: 13px; font-weight: 500; color: #fff; }
+  .founder-title { font-size: 11px; color: var(--orange-light); }
+  footer { background: #06152f; padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-logo { font-family: 'Source Serif 4', serif; font-size: 16px; color: #fff; }
+  .footer-logo span { color: var(--orange); }
+  .footer-right { font-size: 11px; color: rgba(255,255,255,0.35); }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero, .subscribe-section, .about-section { grid-template-columns: 1fr; padding: 48px 24px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .section { padding: 48px 24px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Bridge<span>@SU</span></div>
+  <ul class="nav-links">
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">For schools</a></li>
+    <li><a href="#">Our story</a></li>
+  </ul>
+  <button class="nav-cta">Subscribe Free</button>
+</nav>
+<section class="hero">
+  <div>
+    <div class="hero-tag">Syracuse, NY · Student-Led · Free</div>
+    <h1>The bridge between<br>high school and<br><em>everything after.</em></h1>
+    <p class="hero-sub">Bridge@SU is a free, biweekly newsletter by Syracuse University students connecting high schoolers in the Syracuse area to real deadlines, honest advice, and the college opportunities they deserve to know about.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Subscribe Free</button>
+      <button class="btn-ghost">For Schools & Teachers</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">1 in 5</div>
+      <div class="stat-label">SU undergrads are first-generation students — most navigated the process alone.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Free.</div>
+      <div class="stat-label">Always. For every student. No catches, no sign-up fees.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2x</div>
+      <div class="stat-label">First-gen students are more likely to miss key deadlines without early outreach and guidance.</div>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="section-eyebrow">How it works</div>
+  <h2>Three ways Bridge@SU shows up for you.</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <div class="how-title">Biweekly Newsletter</div>
+      <div class="how-desc">Scholarships, deadlines, application tips, and real student stories delivered to your inbox every two weeks. Written by SU students who've been exactly where you are.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <div class="how-title">Video Announcements</div>
+      <div class="how-desc">Short videos from SU students in different majors, made to play in your school's morning announcements. Real faces, real advice, 60 seconds.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <div class="how-title">Yearly Info Sessions</div>
+      <div class="how-desc">Come to SU campus, meet students from every major, ask anything. Free and open to all 9th through 12th graders in the Syracuse area.</div>
+    </div>
+  </div>
+</section>
+<section class="subscribe-section">
+  <div>
+    <div class="section-eyebrow" style="color:#f4956a">Join Bridge@SU</div>
+    <h2>Start getting the information<br>you <em>deserve.</em></h2>
+    <p class="subscribe-sub">Subscribe for free as a student, or sign up your students as a teacher or counselor. One click, no cost, real impact.</p>
+  </div>
+  <div class="subscribe-form">
+    <div class="form-row">
+      <div>
+        <label class="form-label">First name</label>
+        <input class="form-input" type="text" placeholder="Your first name">
+      </div>
+      <div>
+        <label class="form-label">Grade</label>
+        <input class="form-input" type="text" placeholder="9th, 10th...">
+      </div>
+    </div>
+    <label class="form-label">Email address</label>
+    <input class="form-input" type="email" placeholder="you@email.com">
+    <label class="form-label">School (optional)</label>
+    <input class="form-input" type="text" placeholder="e.g. Corcoran High School, JD...">
+    <button class="form-submit">Subscribe — it's free</button>
+    <div class="form-note">No spam. Just real opportunities. Unsubscribe anytime.</div>
+  </div>
+</section>
+<section class="about-section">
+  <div>
+    <h2>Why we built this.</h2>
+    <p>Bridge@SU was started by a first-generation college student at Syracuse University who kept hearing the same thing from high schoolers: "I didn't know that was an option."</p>
+    <p>SU students know things guidance counselors don't always have time to share. We built Bridge@SU to close that gap — one email, one video, one conversation at a time.</p>
+    <ul class="value-list">
+      <li><div class="value-dot"></div>Knowledge is a right, not a privilege. Every student deserves access to the same information.</li>
+      <li><div class="value-dot"></div>Peer advice lands differently. We've been exactly where you are.</li>
+      <li><div class="value-dot"></div>Community is the whole point. You're not navigating this alone.</li>
+    </ul>
+  </div>
+  <div class="founder-card">
+    <div class="founder-quote">"As a first-generation American, I had no roadmap for any of this. Not FAFSA, not deadlines, not even where to start. I built Bridge@SU so no high schooler has to figure it out alone."</div>
+    <div class="founder-info">
+      <div class="founder-avatar">M</div>
+      <div>
+        <div class="founder-name">Malak A. — Founder</div>
+        <div class="founder-title">Junior, Chemical Engineering · Syracuse University</div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">Bridge<span>@SU</span></div>
+  <div class="footer-right">A student-led initiative at Syracuse University · Syracuse, NY</div>
+</footer>
+</body>
+</html>
